@@ -297,7 +297,7 @@ export default function CardPage() {
           <div className="flex flex-col items-center">
             {profile.photo && (
               <div className="w-24 h-24 rounded-full bg-primary-100 mb-4 flex items-center justify-center overflow-hidden">
-                <img src={profile.photo} alt={profile.name} className="w-full h-full object-cover" />
+                <Image src={profile.photo} alt={profile.name} width={96} height={96} className="w-full h-full object-cover" />
               </div>
             )}
             {!profile.photo && (
@@ -309,7 +309,7 @@ export default function CardPage() {
             <p className="text-xl text-gray-600 mb-1">{profile.position}</p>
             <p className="text-lg text-primary-600 font-medium">{profile.company}</p>
             {profile.logo && (
-              <img src={profile.logo} alt={profile.company} className="h-12 mt-4" />
+              <Image src={profile.logo} alt={profile.company} width={48} height={48} className="h-12 mt-4" />
             )}
           </div>
         </Card>
@@ -383,11 +383,11 @@ export default function CardPage() {
             </Button>
           </div>
           <p className="text-gray-600 mb-4">
-            Posez-moi vos questions ou demandez-moi de l'aide pour échanger vos numéros, prendre un rendez-vous, ou obtenir un itinéraire.
+            Posez-moi vos questions ou demandez-moi de l&apos;aide pour échanger vos numéros, prendre un rendez-vous, ou obtenir un itinéraire.
           </p>
           <div className="bg-primary-50 p-4 rounded-lg">
             <p className="text-sm text-gray-700">
-              💡 <strong>Essayez :</strong> "Je voudrais échanger nos numéros" ou "Je veux prendre un rendez-vous"
+              💡 <strong>Essayez :</strong> &quot;Je voudrais échanger nos numéros&quot; ou &quot;Je veux prendre un rendez-vous&quot;
             </p>
           </div>
         </Card>
