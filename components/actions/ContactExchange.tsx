@@ -214,7 +214,7 @@ export const ContactExchange: React.FC<ContactExchangeProps> = ({
         </div>
 
         <p className="text-xs text-gray-500 text-center">
-          En cliquant sur "Partager mon numéro", vous acceptez que votre numéro soit partagé avec {cardProfile?.name || 'le propriétaire'}.
+          En cliquant sur &quot;Partager mon numéro&quot;, vous acceptez que votre numéro soit partagé avec {cardProfile?.name || 'le propriétaire'}.
         </p>
       </div>
     </Card>

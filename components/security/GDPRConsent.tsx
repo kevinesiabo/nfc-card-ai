@@ -59,7 +59,7 @@ export const GDPRConsent: React.FC<GDPRConsentProps> = ({ onConsent }) => {
                 size="sm"
                 icon={<Check className="w-4 h-4" />}
               >
-                J'accepte
+                J&apos;accepte
               </Button>
               <Button
                 onClick={handleReject}

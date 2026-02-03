@@ -91,7 +91,7 @@ export default function DashboardPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Tableau de bord</h1>
-        <p className="text-gray-600 mt-2">Vue d'ensemble de vos statistiques</p>
+        <p className="text-gray-600 mt-2">Vue d&apos;ensemble de vos statistiques</p>
       </div>
 
       {/* Stats Grid */}
