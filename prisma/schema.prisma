@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CardProfile {
+  id            String   @id @default(cuid())
+  name          String
+  position      String
+  company       String
+  photo         String?
+  logo          String?
+  phone         String
+  email         String
+  whatsapp      String?
+  address       String?
+  timezone      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  socialMedia   SocialMedia?
+  timeSlots     TimeSlot[]
+  analytics     Analytics?
+  appointments  Appointment[]
+  contactExchanges ContactExchange[]
+}
+
+model SocialMedia {
+  id        String   @id @default(cuid())
+  cardId   String   @unique
+  linkedin String?
+  twitter  String?
+  facebook String?
+  instagram String?
+  card      CardProfile @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("social_media")
+}
+
+model TimeSlot {
+  id          String   @id @default(cuid())
+  cardId     String
+  date       String
+  startTime  String
+  endTime    String
+  available  Boolean  @default(true)
+  location   String?
+  meetingLink String?
+  card       CardProfile @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("time_slots")
+}
+
+model Analytics {
+  id                String   @id @default(cuid())
+  cardId           String   @unique
+  scansNfc         Int      @default(0)
+  scansQr          Int      @default(0)
+  scansTotal       Int      @default(0)
+  contactExchanges Int      @default(0)
+  appointments     Int      @default(0)
+  directions       Int      @default(0)
+  aiInteractions   Int      @default(0)
+  conversionRate   Float    @default(0)
+  lastUpdated      DateTime @default(now()) @updatedAt
+  card             CardProfile @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("analytics")
+}
+
+model Appointment {
+  id            String   @id @default(cuid())
+  cardId       String
+  visitorName  String
+  visitorEmail String
+  visitorPhone String
+  slotId       String
+  date         String
+  startTime    String
+  endTime      String
+  location     String?
+  meetingLink  String?
+  status       String   @default("pending") // pending, confirmed, cancelled
+  createdAt     DateTime @default(now())
+  card         CardProfile @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("appointments")
+}
+
+model ContactExchange {
+  id            String   @id @default(cuid())
+  cardId       String
+  visitorPhone String
+  visitorName  String?
+  contextMessage String?
+  status       String   @default("pending") // pending, accepted, rejected
+  timestamp    DateTime @default(now())
+  card         CardProfile @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("contact_exchanges")
+}
+
